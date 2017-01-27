@@ -1,5 +1,6 @@
 PUT harp
-Put mnf
+
+PUT mnf
 
 PUT mnf/investigator/_mapping
 {
