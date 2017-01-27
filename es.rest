@@ -1,0 +1,47 @@
+PUT harp
+Put mnf
+
+PUT mnf/investigator/_mapping
+{
+    "investigator": {
+      "_timestamp": { 
+        "enabled": true
+      }
+    }
+}
+
+PUT harp/temperature/_mapping
+{
+    "temperature": {
+      "_timestamp": { 
+        "enabled": true
+      }
+    }
+}
+
+
+POST harp/temperature/
+{
+    "value": 20.5
+}
+
+PUT harp/temperature/5/_create
+{
+    "value": 21.14
+}
+
+
+GET _search
+{
+   "query": {
+      "match_all": {}
+      },
+    "fields": {
+        "_source": {},
+    }
+}
+    
+# delete all index
+DELETE /harp
+
+DELETE /mnf
