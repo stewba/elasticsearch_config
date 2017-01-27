@@ -1,5 +1,4 @@
 PUT harp
-
 PUT mnf
 
 PUT mnf/investigator/_mapping
@@ -7,6 +6,17 @@ PUT mnf/investigator/_mapping
     "investigator": {
       "_timestamp": { 
         "enabled": true
+      },
+      "properties": { 
+          "location": {
+            "type": "geo_point",
+            "geohash":     true,
+            "geohash_precision":  "7" 
+        },
+        "Date/Time": {
+            "type": "integer"
+        }
+        
       }
     }
 }
@@ -31,8 +41,16 @@ PUT harp/temperature/5/_create
     "value": 21.14
 }
 
+GET /mnf/investigator/_search
+{
+   "query": {
+      "match_all": {}
+      }
+}
 
-GET _search
+GET /mnf/investigator/
+
+GET /mnf/investigator/_search
 {
    "query": {
       "match_all": {}
@@ -43,6 +61,6 @@ GET _search
 }
     
 # delete all index
-DELETE /harp
+#DELETE /harp
 
-DELETE /mnf
+DELETE /mnf/
